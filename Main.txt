@@ -1,0 +1,15 @@
+#include<iomanip>
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<Assignment1.h>
+
+using namespace std;
+
+int main(){
+    //Here I will read the stuff
+
+    //Here add stuff to object
+
+    
+}
