@@ -14,8 +14,13 @@ during execution*/
 //Counters name is runtime
 //Given ATK, SPD, SPATK, DEF, SPDEF
 
+void dataPoke::Read(){
+    //function to read excel file/ data given
+    
+}
 
-void Insertion(int length, int array[]){
+
+void dataPoke::Insertion(int length, int array[]){
     //Simple insertion sort
     for (int i = 1; i < (length - 1); i++){
         int j = i;
@@ -28,14 +33,14 @@ void Insertion(int length, int array[]){
     return;
 }
 
-void Quick(){
+void dataPoke::Quick(){
     //Need to study quick sort
     
     return;
 }
 
 //Will take the longest to code due to how many substats
-void Merge(){
+void dataPoke::Merge(){
     //Could use recurrsion or a for loop
     if(length >= 2){
         //Pokemon.stats[length/2];
