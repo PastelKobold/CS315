@@ -9,47 +9,125 @@ during execution*/
 
 #include <stdio.h>
 #include <Assignment1.h>
+#include<fstream>
+#include<string>
+#include<iomanip>
+#include<iostream>
+#include<vector>
+using namespace std;
 
 //Not sure what number of comparisons means? Maybe each time it compares to switch them? Simple counter will work
 //Counters name is runtime
-//Given ATK, SPD, SPATK, DEF, SPDEF
 
-void dataPoke::Read(){
-    //function to read excel file/ data given
-    
+void dataPoke::Read(string File){
+    //Put number into Everyting into vector stats
+    //string Number and string TStats
+    File.open();
+    if(!File.open()){
+        cout << "Error file did not open."
+        return;
+    }
+
+    //Should in theory grab the two values and be able to use them
+    while(getline(File, Line)){
+        stringstream s (Line);
+        while(getline(File, Stat, ','))
+            ToRead.push_back(stoi(Stat));
+        Stats.push_back(ToRead);
+    }
+
+    length = Stats[i].size();
+    p = Stats[0][0];
+    r = Stats[length-1][length-1];
 }
 
+void dataPoke::Print(){
+    cout << runtime << endl;
+}
 
-void dataPoke::Insertion(int length, int array[]){
-    //Simple insertion sort
-    for (int i = 1; i < (length - 1); i++){
-        int j = i;
-        while (j > 0 && array[j-1] > array[j]){
-            temp = array[j];
-            array[j] = array[j-1];
-            array[j-1] = temp;
+//NEED TO FIX LATER
+void dataPoke::Insertion(){
+    for (i = 1; i < (151 - 1); i++){
+        while (Stats[i-1][0] > Stats[i][0]){
+            temp = Stats[i][0];
+            Stats[i][0] = Stats[i-1][0];
+            Stats[i-1][0] = temp;
+            temp = Stats[i][1];
+            Stats[i][1] = Stats[i-1][1];
+            Stats[i-1][1] = temp;
+            runtime++;
         }
     }
+    Print();
     return;
 }
 
-void dataPoke::Quick(){
-    //Need to study quick sort
-    
-    return;
-}
-
-//Will take the longest to code due to how many substats
-void dataPoke::Merge(){
-    //Could use recurrsion or a for loop
-    if(length >= 2){
-        //Pokemon.stats[length/2];
-        //Then take each group and sort each group. Then merge the groups together
+/*Partition()
+    x = A[r]
+    i = p-1
+    for j= p to r-1
+        if A[j] <= x
+            i= i+1
+            exchange A[i] w/ A[j]
+    exchange A[i+1] w/ A[r]
+    return i + 1*/
+int dataPoke::Partition(int p, int r){
+    x = Stats[r][r];
+    i = p - 1;
+    for (j=p; j < r-1; j++){
+        if (Stats[j][j] <= x){
+            i = i+1;
+            temp = Stats[i][i];
+            Stats[i][i] = Stats[j][j];
+            Stats[j][j] = temp;
+        }
     }
-    else
-        return Merge();
+    temp = Stats[i+1][i+1];
+    Stats[i+1][i+1] = Stats[r][r];
+    Stats[r][r] = temp;
+    return i + 1;  
 }
 
-/*Object Poke(int atk[], int spatk[], int def[], int spdef[], int spd[], int names[]){
-    
-}*/
+void dataPoke::Quick(int p, int r){
+    if (p < r){
+        q = Partition(p,r);
+        Quick(p,q-1);
+        Quick(q+1,r);
+    }
+}
+
+/*Merge(A,p,q,r) A = input array p = bottom value r= top q = middle
+        n1 = q-p+1
+        n2 = r-q
+        let L[1..n1+1] and R[1..n2+1] be new arrays
+        for i =1 tp n1
+            L[i] = A[p+i-1]
+        for j = 1 to n2
+            R[j]=A[q+j]
+        L[n1+1] = Sentiel value
+        R[n2+1] = Sentinel value
+        i=1
+        j=1
+        for k = p to r
+            if L[i] <= R[j]
+                A[k] = L[i]
+                i = i +1
+            else A[k] = R[j]*/
+void dataPoke::Merge(){
+    n1 = q - (p+1);
+    n2 = r-q;
+
+}
+
+void dataPoke::Merge_Sort(){
+    //Could use recurrsion or a for loop
+    /* Merge-Sort(A, p , r)
+        if p < r
+            q= floor function((p+r/2))
+            Merge-Sort(A,p,q)
+            Merge-Sort(A, q+1, r
+            Merge(A,p,q,r))*/
+            
+}
+
+
