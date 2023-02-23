@@ -45,7 +45,6 @@ void dataPoke::Print(){
     cout << runtime << endl;
 }
 
-//NEED TO FIX LATER
 void dataPoke::Insertion(){
     for (i = 1; i < (151 - 1); i++){
         while (Stats[i-1][0] > Stats[i][0]){
@@ -62,15 +61,6 @@ void dataPoke::Insertion(){
     return;
 }
 
-/*Partition()
-    x = A[r]
-    i = p-1
-    for j= p to r-1
-        if A[j] <= x
-            i= i+1
-            exchange A[i] w/ A[j]
-    exchange A[i+1] w/ A[r]
-    return i + 1*/
 int dataPoke::Partition(int p, int r){
     x = Stats[r][r];
     i = p - 1;
@@ -113,21 +103,37 @@ void dataPoke::Quick(int p, int r){
                 A[k] = L[i]
                 i = i +1
             else A[k] = R[j]*/
-void dataPoke::Merge(){
+void dataPoke::Merge(int p, int q, int r){
     n1 = q - (p+1);
     n2 = r-q;
-
+    int L[n1+1];
+    int R[n2+1];
+    for (i = 1; i <= n1; i++){
+        L[i] = Stats[p+i-1][p+i-r];
+    }
+    for(j=1; j<=n2; i++){
+        R[j]=Stats[q+j][q+j];
+    }
+    //L[n1+1] = Sentinel value
+    //R[n2+1] = Sentinel value
+    i = 1;
+    j = 1;
+    for(k = p; k <= r; k++){
+        if(L[i] <= R[j]){
+            Stats[k][k] = L[i];
+            i++;
+        }
+        else Stats[k][k] = R[j];
+    }
 }
 
-void dataPoke::Merge_Sort(){
-    //Could use recurrsion or a for loop
-    /* Merge-Sort(A, p , r)
-        if p < r
-            q= floor function((p+r/2))
-            Merge-Sort(A,p,q)
-            Merge-Sort(A, q+1, r
-            Merge(A,p,q,r))*/
-            
+void dataPoke::Merge_Sort(int p,int r){
+    if (p < r){
+        //q= floor function((p+r/2))
+        Merge-Sort(p,q);
+        Merge-Sort(q+1,r);
+        Merge(p,q,r);
+    }          
 }
 
 

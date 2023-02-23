@@ -12,6 +12,7 @@ class dataPoke
     int temp = 0;
     int i = 0;
     int j = 0;
+    int k = 0;
     int x = 0;
     int p = 0;
     int r = 0;
@@ -32,8 +33,8 @@ class dataPoke
         void Insertion();
         int Partition(int p, int r);
         void Quick(int p, int r);
-        void Merge_Sort();
-        void Merge();
+        void Merge_Sort(int p,int r);
+        void Merge(int p, int q, int r);
         void Print();
 };
 
