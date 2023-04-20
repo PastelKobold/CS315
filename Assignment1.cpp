@@ -7,8 +7,19 @@ Each of these also comes in a sorted, reverse sorted, and random variety.
 Estimate the runtime of each algorithm on each dataset by counting the number of comparisons made
 during execution*/
 
+<<<<<<< Updated upstream
 #include <stdio.h>
 #include <Assignment1.h>
+=======
+#include<stdio.h>
+#include<Assignment1.h>
+#include<fstream>
+#include<string>
+#include<iomanip>
+#include<iostream>
+#include<vector>
+using namespace std;
+>>>>>>> Stashed changes
 
 //Not sure what number of comparisons means? Maybe each time it compares to switch them? Simple counter will work
 //Counters name is runtime
